@@ -1,86 +1,32 @@
 //
 //  MasterViewController.m
-//  api weather
+//  QuizTriviaGame
 //
-//  Created by George Francis on 07/08/2014.
-//  Copyright (c) 2014 GeorgeFrancis. All rights reserved.
+//  Created by George Francis on 22/03/2014.
+//  Copyright (c) 2014 George Francis. All rights reserved.
 //
 
 #import "MasterViewController.h"
-//#import "DetailViewController.h"
-#import <RestKit/RestKit.h>
-#import "DataModels.h"
-//#import "Constants.h"
 
-@interface MasterViewController (){
-    
-    NSArray *weatherObjects;
-    NSMutableArray *weatherArray;
-    NSMutableArray *_objects;
-}
+@interface MasterViewController ()
+
 @end
 
 @implementation MasterViewController
 
-- (void)awakeFromNib
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    [super awakeFromNib];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    weatherArray = [[NSMutableArray alloc] init];
-//    [self getWeatherForCity:@"London"];
-//    [self getWeatherForCity:@"Luton"];
-//    [self getWeatherForCity:@"Manchester"];
-//    [self getWeatherForCity:@"Birmingham"];
-}
-
--(RKResponseDescriptor *)responseDescriptor
-{
-    RKObjectMapping* cloudMapping = [RKObjectMapping mappingForClass:[Clouds class]];
-    [cloudMapping addAttributeMappingsFromArray:@[@"all"]];
-    RKObjectMapping* coordMapping = [RKObjectMapping mappingForClass:[Coord class]];
-    [coordMapping addAttributeMappingsFromArray:@[@"lon",@"lat"]];
-    RKObjectMapping* weatherMapping = [RKObjectMapping mappingForClass:[Weather class]];
-    [weatherMapping addAttributeMappingsFromArray:@[@"icon",@"main"]];
-    RKObjectMapping* mainMapping = [RKObjectMapping mappingForClass:[Main class]];
-    [mainMapping addAttributeMappingsFromArray:@[@"temp",@"temp_min",@"temp_max",@"humidity",@"pressure"]];
-    RKObjectMapping* weatherReportMapping = [RKObjectMapping mappingForClass:[WeatherReport class]];
-    [weatherReportMapping addAttributeMappingsFromArray:@[@"name"]];
-    
-    [weatherReportMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"clouds" toKeyPath:@"clouds" withMapping:cloudMapping]];
-    [weatherReportMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"coord" toKeyPath:@"coord" withMapping:coordMapping]];
-    [weatherReportMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"weather" toKeyPath:@"weather" withMapping:weatherMapping]];
-    [weatherReportMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"main" toKeyPath:@"main" withMapping:mainMapping]];
-    
-    
-    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:weatherReportMapping method:RKRequestMethodAny pathPattern:nil keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
-    
-    return responseDescriptor;
-}
-
--(void)getWeatherForCity:(NSString *)cityName
-{    
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/weather?q=%@",cityName]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    RKObjectRequestOperation *objectRequestOperation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[[self responseDescriptor]]];
-    
-    [objectRequestOperation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-
-        weatherObjects = mappingResult.array;
-        [weatherArray addObject:weatherObjects];
-        [self.tableView reloadData];
-   
-        RKLogInfo(@"Load collection of Weather: %@", mappingResult.array);
-        
-    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-        RKLogError(@"Operation failed with error: %@", error);
-    }];
-    
-    [objectRequestOperation start];
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
@@ -89,45 +35,52 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table View
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (!self.adBanner) {
+        self.adBanner = [[ADBannerView alloc]initWithFrame:CGRectZero];
+       // [self.adBanner setCurrentContentSizeIdentifier:ADBannerContentSizeIdentifierPortrait];
+        [self.adBanner setDelegate:self];
+        [self.adBanner setAlpha:0];
+        [self.view addSubview:self.adBanner];
+        CGRect frame = self.adBanner.frame;
+        frame.origin.y = self.view.frame.size.height-frame.size.height;
+        [self.adBanner setFrame:frame];
+        
+    }
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    return weatherArray.count;
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+-(void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    
+    [UIView beginAnimations:nil context:nil];
+    
+    [UIView setAnimationDuration:1];
+    [banner setAlpha:1];
+    
+    [UIView commitAnimations];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-   
-    NSMutableArray *weatherarray = weatherArray[indexPath.row];
-    WeatherReport *weatherO = weatherarray[0];
+-(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    NSLog(@"Ad failed to load with Error: %@", error.localizedDescription);
     
-    NSString *iconCode = [[weatherO.weather valueForKey:@"icon"] componentsJoinedByString:@""];
-    NSString *imageUrlString = [NSString stringWithFormat:@"http://openweathermap.org/img/w/%@.png",iconCode];
-    NSURL *url = [NSURL URLWithString:imageUrlString];
-    NSData *data = [[NSData alloc] initWithContentsOfURL:url];
+    [UIView beginAnimations:nil context:nil];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",weatherO.name];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Temp: %.0f",weatherO.main.temp];
-    cell.imageView.image = [UIImage imageWithData:data];
+    [UIView setAnimationDuration:1];
+    [banner setAlpha:0];
     
-    return cell;
+    [UIView commitAnimations];
+    
 }
-
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    if ([[segue identifier] isEqualToString:@"showDetail"]) {
-//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//        NSMutableArray *weatherarray = weatherArray[indexPath.row];
-//        WeatherReport *weatherO = weatherarray[0];
-//        [[segue destinationViewController] setDetailItem:weatherO];
-//    }
-//}
 
 @end
