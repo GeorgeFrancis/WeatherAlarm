@@ -324,6 +324,7 @@
         UIImage *buttonImage = [UIImage imageNamed:@"tickButton.png"];
         [self.saveDailyReminderButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
         [self.dailyReminderLabel setHidden:YES];
+        [self.speechBubbleImageView setAlpha:0.3];
         [self.dailyReminderTextField setHidden:NO];
         [self.dailyReminderTextField becomeFirstResponder];
     }
@@ -338,6 +339,7 @@
         self.dailyReminderString = self.dailyReminderTextField.text;
         self.dailyReminderLabel.text = [NSString stringWithFormat:@"%@",self.dailyReminderString];
         [[NSUserDefaults standardUserDefaults]setObject:self.dailyReminderString forKey:@"dailyReminder"];
+        [self.speechBubbleImageView setAlpha:1.0];
         [self.dailyReminderLabel setHidden:NO];
         [self.dailyReminderTextField resignFirstResponder];
     }

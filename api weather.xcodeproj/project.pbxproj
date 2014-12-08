@@ -15,7 +15,6 @@
 		1B4EC8CE1993923D00E4626F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4EC8CD1993923D00E4626F /* main.m */; };
 		1B4EC8D21993923D00E4626F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4EC8D11993923D00E4626F /* AppDelegate.m */; };
 		1B4EC8D51993923D00E4626F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B4EC8D31993923D00E4626F /* Main.storyboard */; };
-		1B4EC8D81993923D00E4626F /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4EC8D71993923D00E4626F /* MasterViewController.m */; };
 		1B4EC8DD1993923D00E4626F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B4EC8DC1993923D00E4626F /* Images.xcassets */; };
 		1B4EC8E41993923D00E4626F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B4EC8E31993923D00E4626F /* XCTest.framework */; };
 		1B4EC8E51993923D00E4626F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B4EC8C11993923D00E4626F /* Foundation.framework */; };
@@ -29,6 +28,15 @@
 		1B4EC9131996371200E4626F /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4EC90A1996371200E4626F /* Weather.m */; };
 		1B4EC9141996371200E4626F /* WeatherReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4EC90C1996371200E4626F /* WeatherReport.m */; };
 		1B4EC9151996371200E4626F /* Wind.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4EC90E1996371200E4626F /* Wind.m */; };
+		1B7A06931A34D58F0043DCAB /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B7A06921A34D58F0043DCAB /* Media.xcassets */; };
+		1B7A06951A34DBA70043DCAB /* thermometer.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B7A06941A34DBA70043DCAB /* thermometer.png */; };
+		1B7A06971A34E2C40043DCAB /* speechBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B7A06961A34E2C40043DCAB /* speechBubble.png */; };
+		1B7A06991A34E3790043DCAB /* speechBubbleRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B7A06981A34E3790043DCAB /* speechBubbleRight.png */; };
+		1B7A06A21A34E9190043DCAB /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7A06A11A34E9190043DCAB /* MasterViewController.m */; };
+		1B7A06A41A34EB5D0043DCAB /* tempCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B7A06A31A34EB5D0043DCAB /* tempCircle.png */; };
+		1B7A06A71A34EE380043DCAB /* textBox1White.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B7A06A51A34EE380043DCAB /* textBox1White.png */; };
+		1B7A06A81A34EE380043DCAB /* textBox2White.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B7A06A61A34EE380043DCAB /* textBox2White.png */; };
+		1B7A06AA1A34F96A0043DCAB /* transparentSpeechBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B7A06A91A34F96A0043DCAB /* transparentSpeechBubble.png */; };
 		1B92ABE219E18FB200CDB65D /* alarmSetBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B92ABD219E18FB200CDB65D /* alarmSetBox.png */; };
 		1B92ABE319E18FB200CDB65D /* backgroundImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B92ABD319E18FB200CDB65D /* backgroundImage.png */; };
 		1B92ABE419E18FB200CDB65D /* cloudyImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B92ABD419E18FB200CDB65D /* cloudyImage.png */; };
@@ -92,8 +100,6 @@
 		1B4EC8D01993923D00E4626F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1B4EC8D11993923D00E4626F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1B4EC8D41993923D00E4626F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		1B4EC8D61993923D00E4626F /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		1B4EC8D71993923D00E4626F /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		1B4EC8DC1993923D00E4626F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1B4EC8E21993923D00E4626F /* api weatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "api weatherTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B4EC8E31993923D00E4626F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -115,6 +121,16 @@
 		1B4EC90C1996371200E4626F /* WeatherReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherReport.m; sourceTree = "<group>"; };
 		1B4EC90D1996371200E4626F /* Wind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wind.h; sourceTree = "<group>"; };
 		1B4EC90E1996371200E4626F /* Wind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wind.m; sourceTree = "<group>"; };
+		1B7A06921A34D58F0043DCAB /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		1B7A06941A34DBA70043DCAB /* thermometer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thermometer.png; sourceTree = "<group>"; };
+		1B7A06961A34E2C40043DCAB /* speechBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speechBubble.png; sourceTree = "<group>"; };
+		1B7A06981A34E3790043DCAB /* speechBubbleRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speechBubbleRight.png; sourceTree = "<group>"; };
+		1B7A06A01A34E9190043DCAB /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		1B7A06A11A34E9190043DCAB /* MasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		1B7A06A31A34EB5D0043DCAB /* tempCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tempCircle.png; sourceTree = "<group>"; };
+		1B7A06A51A34EE380043DCAB /* textBox1White.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textBox1White.png; sourceTree = "<group>"; };
+		1B7A06A61A34EE380043DCAB /* textBox2White.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textBox2White.png; sourceTree = "<group>"; };
+		1B7A06A91A34F96A0043DCAB /* transparentSpeechBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transparentSpeechBubble.png; sourceTree = "<group>"; };
 		1B92ABD219E18FB200CDB65D /* alarmSetBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alarmSetBox.png; sourceTree = "<group>"; };
 		1B92ABD319E18FB200CDB65D /* backgroundImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundImage.png; sourceTree = "<group>"; };
 		1B92ABD419E18FB200CDB65D /* cloudyImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloudyImage.png; sourceTree = "<group>"; };
@@ -183,6 +199,7 @@
 		1B4EC8B51993923D00E4626F = {
 			isa = PBXGroup;
 			children = (
+				1B7A06921A34D58F0043DCAB /* Media.xcassets */,
 				1B4EC8C71993923D00E4626F /* api weather */,
 				1B4EC8E91993923D00E4626F /* api weatherTests */,
 				1B4EC8C01993923D00E4626F /* Frameworks */,
@@ -223,8 +240,8 @@
 				1B95D46A19E56C810038210B /* LocationViewController.m */,
 				1B294CE819B07E3300AF686E /* WeatherViewController.h */,
 				1B294CE919B07E3300AF686E /* WeatherViewController.m */,
-				1B4EC8D61993923D00E4626F /* MasterViewController.h */,
-				1B4EC8D71993923D00E4626F /* MasterViewController.m */,
+				1B7A06A01A34E9190043DCAB /* MasterViewController.h */,
+				1B7A06A11A34E9190043DCAB /* MasterViewController.m */,
 				1B94D33519CC12B500A0FCA7 /* background.png */,
 				1BF340FB19D8855C009DA94E /* AlarmBells1.wav */,
 				1B93406D19D9B4B60074724F /* newAlarm.mp3 */,
@@ -308,6 +325,13 @@
 				1B92ABDF19E18FB200CDB65D /* timeBox.png */,
 				1B92ABE019E18FB200CDB65D /* title.png */,
 				1B92ABE119E18FB200CDB65D /* umbrella.png */,
+				1B7A06981A34E3790043DCAB /* speechBubbleRight.png */,
+				1B7A06961A34E2C40043DCAB /* speechBubble.png */,
+				1B7A06941A34DBA70043DCAB /* thermometer.png */,
+				1B7A06A31A34EB5D0043DCAB /* tempCircle.png */,
+				1B7A06A91A34F96A0043DCAB /* transparentSpeechBubble.png */,
+				1B7A06A51A34EE380043DCAB /* textBox1White.png */,
+				1B7A06A61A34EE380043DCAB /* textBox2White.png */,
 			);
 			name = "New Group";
 			sourceTree = "<group>";
@@ -418,6 +442,7 @@
 				1B95D46819E5376B0038210B /* backgroundImageMain.png in Resources */,
 				1B92ABE719E18FB200CDB65D /* rainingImage.png in Resources */,
 				1B92ABE419E18FB200CDB65D /* cloudyImage.png in Resources */,
+				1B7A06A41A34EB5D0043DCAB /* tempCircle.png in Resources */,
 				1B4EC8DD1993923D00E4626F /* Images.xcassets in Resources */,
 				1B95D48519E6C4F70038210B /* 09-10d_showerRain-Rain.png in Resources */,
 				1B94D33819CC12B500A0FCA7 /* background.png in Resources */,
@@ -430,17 +455,22 @@
 				1B95D48619E6C4F70038210B /* 09-10n_showerRain-Rain.png in Resources */,
 				1B93406E19D9B4B60074724F /* newAlarm.mp3 in Resources */,
 				1B92ABE319E18FB200CDB65D /* backgroundImage.png in Resources */,
+				1B7A06971A34E2C40043DCAB /* speechBubble.png in Resources */,
 				1B95D48919E6C4F70038210B /* 13n_snow.png in Resources */,
 				1B4EC8CC1993923D00E4626F /* InfoPlist.strings in Resources */,
 				1B95D48119E6C4F70038210B /* 03d_scatteredClouds.png in Resources */,
+				1B7A06991A34E3790043DCAB /* speechBubbleRight.png in Resources */,
 				1B95D47D19E6C4F70038210B /* 01d_clearSkyDay.png in Resources */,
 				1B92ABEF19E18FB200CDB65D /* timeBox.png in Resources */,
+				1B7A06951A34DBA70043DCAB /* thermometer.png in Resources */,
 				1B92ABE219E18FB200CDB65D /* alarmSetBox.png in Resources */,
 				1B95D48A19E6C4F70038210B /* 50d_mist.png in Resources */,
 				1B92ABEE19E18FB200CDB65D /* tickButton.png in Resources */,
 				1B92ABE819E18FB200CDB65D /* refreshButton.png in Resources */,
 				1B92ABE519E18FB200CDB65D /* highTempBox.png in Resources */,
+				1B7A06A81A34EE380043DCAB /* textBox2White.png in Resources */,
 				1B94D33419CC103F00A0FCA7 /* AGENTORANGE.TTF in Resources */,
+				1B7A06931A34D58F0043DCAB /* Media.xcassets in Resources */,
 				1B95D48019E6C4F70038210B /* 02n_fewClouds.png in Resources */,
 				1B95D47C19E6C4F70038210B /* 01d_clearSky.png in Resources */,
 				1B95D48319E6C4F70038210B /* 04d_brokenClouds.png in Resources */,
@@ -448,7 +478,9 @@
 				1B92ABED19E18FB200CDB65D /* tempBox.png in Resources */,
 				1B4EC8D51993923D00E4626F /* Main.storyboard in Resources */,
 				1B95D47F19E6C4F70038210B /* 02d_fewClouds.png in Resources */,
+				1B7A06AA1A34F96A0043DCAB /* transparentSpeechBubble.png in Resources */,
 				1B92ABE619E18FB200CDB65D /* lowTempBox.png in Resources */,
+				1B7A06A71A34EE380043DCAB /* textBox1White.png in Resources */,
 				1B95D48419E6C4F70038210B /* 04n_brokenClouds.png in Resources */,
 				1B92ABF019E18FB200CDB65D /* title.png in Resources */,
 				1B95D48719E6C4F70038210B /* 11d_thunderStorm.png in Resources */,
@@ -507,9 +539,9 @@
 				1B294CEA19B07E3300AF686E /* WeatherViewController.m in Sources */,
 				1B4EC9151996371200E4626F /* Wind.m in Sources */,
 				1B4EC8D21993923D00E4626F /* AppDelegate.m in Sources */,
+				1B7A06A21A34E9190043DCAB /* MasterViewController.m in Sources */,
 				1B4EC90F1996371200E4626F /* Clouds.m in Sources */,
 				1B4EC9111996371200E4626F /* Main.m in Sources */,
-				1B4EC8D81993923D00E4626F /* MasterViewController.m in Sources */,
 				1B95D46B19E56C810038210B /* LocationViewController.m in Sources */,
 				1B4EC9101996371200E4626F /* Coord.m in Sources */,
 				1B4EC9141996371200E4626F /* WeatherReport.m in Sources */,
