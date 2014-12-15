@@ -52,6 +52,7 @@
 //    [self.currentTempLabel setFont:[UIFont fontWithName:@"AGENTORANGE" size:self.currentTempLabel.font.pointSize]];
    
     [self.dailyReminderTextField setHidden:YES];
+    [self.reminderInstructionsLabel setHidden:YES];
     [super viewDidLoad];
     
     weatherArray = [[NSMutableArray alloc] init];
@@ -314,7 +315,7 @@
 - (IBAction)setAlarm:(id)sender {
     
     if (!self.alarmSet) {
-        [self.setAlarmButton setTitle:@"Cancel Alarm" forState:UIControlStateNormal];
+        [self.setAlarmButton setTitle:@"Cancel" forState:UIControlStateNormal];
         self.alarmSet = YES;
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
         dateFormatter.timeZone = [NSTimeZone defaultTimeZone];
@@ -357,6 +358,7 @@
         self.view.frame = f;
         
         self.view.backgroundColor = [UIColor blackColor];
+        [self.reminderInstructionsLabel setHidden:NO];
         [self.weatherLabel setAlpha:0.1];
         [self.locationLabel setAlpha:0.1];
         [self.dateTimePicker setAlpha:0.1];
@@ -374,6 +376,8 @@
 
 -(void)keyboardWillHide:(NSNotification *)notification{
     [UIView animateWithDuration:0.3 animations:^{
+        
+        [self.reminderInstructionsLabel setHidden:YES];
         CGRect f = self.view.frame;
         f.origin.y = 0.0f;
         self.view.frame = f;

@@ -31,6 +31,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *weatherConditionImage;
 @property (strong, nonatomic) IBOutlet UILabel *clockTimeLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *transparentOverlay;
+@property (strong, nonatomic) IBOutlet UILabel *reminderInstructionsLabel;
 
 
 - (IBAction)saveDailyReminder:(id)sender;
