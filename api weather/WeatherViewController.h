@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "LocationViewController.h"
-
-//#import "WeatherViewController.m"
 #import "MasterViewController.h"
 
 @interface WeatherViewController : UIViewController <UITextFieldDelegate>
@@ -31,9 +29,9 @@
 @property (strong, nonatomic) IBOutlet UITextField *dailyReminderTextField;
 @property (strong, nonatomic) IBOutlet UIButton *saveDailyReminderButton;
 @property (strong, nonatomic) IBOutlet UIImageView *weatherConditionImage;
-@property (strong, nonatomic) IBOutlet UIImageView *rainOrSunImage;
 @property (strong, nonatomic) IBOutlet UILabel *clockTimeLabel;
-@property (strong, nonatomic) IBOutlet UIImageView *speechBubbleImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *transparentOverlay;
+
 
 - (IBAction)saveDailyReminder:(id)sender;
 - (IBAction)setAlarm:(id)sender;
@@ -44,9 +42,5 @@
 @property (strong,nonatomic) NSString *locationString;
 
 -(void)getWeatherForCity:(NSString *)cityName;
-
-//-(void)saveLocation;
-
-
 
 @end

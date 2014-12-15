@@ -17,17 +17,17 @@
 
 - (void)viewDidLoad {
     
-    for (NSString* family in [UIFont familyNames])
-    {
-        NSLog(@"%@", family);
-        
-        for (NSString* name in [UIFont fontNamesForFamilyName: family])
-        {
-            NSLog(@"  %@", name);
-        }
-    }
-
-    self.saveLocationButton.titleLabel.font = [UIFont fontWithName:@"AGENTORANGE" size:12.0f];
+//    for (NSString* family in [UIFont familyNames])
+//    {
+//        NSLog(@"%@", family);
+//        
+//        for (NSString* name in [UIFont fontNamesForFamilyName: family])
+//        {
+//            NSLog(@"  %@", name);
+//        }
+//    }
+//
+//    self.saveLocationButton.titleLabel.font = [UIFont fontWithName:@"AGENTORANGE" size:12.0f];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.

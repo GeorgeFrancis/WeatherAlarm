@@ -32,24 +32,24 @@
 - (void)viewDidLoad
 {
     
-    for (NSString* family in [UIFont familyNames])
-    {
-        NSLog(@"%@", family);
-        
-        for (NSString* name in [UIFont fontNamesForFamilyName: family])
-        {
-            NSLog(@"  %@", name);
-        }
-    }
+//    for (NSString* family in [UIFont familyNames])
+//    {
+//        NSLog(@"%@", family);
+//        
+//        for (NSString* name in [UIFont fontNamesForFamilyName: family])
+//        {
+//            NSLog(@"  %@", name);
+//        }
+//    }
     
-    self.setAlarmButton.titleLabel.font = [UIFont fontWithName:@"AGENTORANGE" size:10.0f];
-    [self.weatherLabel setFont:[UIFont fontWithName:@"AGENTORANGE" size:self.weatherLabel.font.pointSize]];
-    [self.clockTimeLabel setFont:[UIFont fontWithName:@"AGENTORANGE" size:self.clockTimeLabel.font.pointSize]];
-    [self.dailyReminderLabel setFont:[UIFont fontWithName:@"AGENTORANGE" size:self.dailyReminderLabel.font.pointSize]];
-    [self.locationLabel setFont:[UIFont fontWithName:@"AGENTORANGE" size:self.locationLabel.font.pointSize]];
-    [self.highTempLabel setFont:[UIFont fontWithName:@"AGENTORANGE" size:self.highTempLabel.font.pointSize]];
-    [self.lowTempLabel setFont:[UIFont fontWithName:@"AGENTORANGE" size:self.lowTempLabel.font.pointSize]];
-    [self.currentTempLabel setFont:[UIFont fontWithName:@"AGENTORANGE" size:self.currentTempLabel.font.pointSize]];
+//    self.setAlarmButton.titleLabel.font = [UIFont fontWithName:@"AGENTORANGE" size:10.0f];
+//    [self.weatherLabel setFont:[UIFont fontWithName:@"AGENTORANGE" size:self.weatherLabel.font.pointSize]];
+//    [self.clockTimeLabel setFont:[UIFont fontWithName:@"AGENTORANGE" size:self.clockTimeLabel.font.pointSize]];
+//    [self.dailyReminderLabel setFont:[UIFont fontWithName:@"AGENTORANGE" size:self.dailyReminderLabel.font.pointSize]];
+//    [self.locationLabel setFont:[UIFont fontWithName:@"AGENTORANGE" size:self.locationLabel.font.pointSize]];
+//    [self.highTempLabel setFont:[UIFont fontWithName:@"AGENTORANGE" size:self.highTempLabel.font.pointSize]];
+//    [self.lowTempLabel setFont:[UIFont fontWithName:@"AGENTORANGE" size:self.lowTempLabel.font.pointSize]];
+//    [self.currentTempLabel setFont:[UIFont fontWithName:@"AGENTORANGE" size:self.currentTempLabel.font.pointSize]];
    
     [self.dailyReminderTextField setHidden:YES];
     [super viewDidLoad];
@@ -58,10 +58,15 @@
     weatherObjects = [[NSArray alloc]init];
     self.dateTimePicker.date = [NSDate date];
     [self updateTime];
-  
+    
     self.dailyReminderString = [[NSUserDefaults standardUserDefaults]objectForKey:@"dailyReminder"];
     self.dailyReminderLabel.text = [NSString stringWithFormat:@"%@",self.dailyReminderString];
-    
+  
+    if ([self.dailyReminderString length] == 0) {
+        
+        self.dailyReminderLabel.text = @"";
+        
+    }
     
     NSString *savedLocationString = self.locationString;
     savedLocationString = [[NSUserDefaults standardUserDefaults]stringForKey:@"savedLocation"];
@@ -114,7 +119,7 @@
         
         //result = mappingResult.array[0];
         //weatherObjects = mappingResult.array;
-      //  [weatherArray addObject:weatherObjects];
+        //[weatherArray addObject:weatherObjects];
         WeatherReport *reportForCity = mappingResult.array[0];
         [self updateLabel:reportForCity];
         
@@ -135,114 +140,103 @@
     self.lowTempLabel.text = [NSString stringWithFormat:@"%.0f\u00B0",city.main.temp_max - 273.15];
     self.highTempLabel.text = [NSString stringWithFormat:@"%.0f\u00B0",city.main.temp_min - 273.15];
     
-    NSString *weatherTemp = [NSString stringWithFormat:@"%.0f\u00B0",city.main.temp_max - 273.15];
-    
+    //NSString *weatherTemp = [NSString stringWithFormat:@"%.0f\u00B0",city.main.temp_max - 273.15];
     //[NSString stringWithFormat:@"%@",city.main];
-
-    int weatherValue = [weatherTemp intValue];
+    //int weatherValue = [weatherTemp intValue];
     
     Weather *weather = city.weather[0];
     
     NSString *weatherTypeString = weather.icon;
- //   NSString *rainString = @"Rain";
-    
-   // NSString *sunOrRainString = [NSString stringWithFormat:@"%@",weather.main];
-    
+ 
     if ([weatherTypeString  isEqualToString:(@"01d")]) {
        // self.weatherLabel.text = [NSString stringWithFormat:@"raining"];
         self.weatherConditionImage.image = [UIImage imageNamed:@"01d_clearSkyDay.png"];
-        self.rainOrSunImage.image = [UIImage imageNamed:@"sunglasses.png"];
+    //    self.rainOrSunImage.image = [UIImage imageNamed:@"sunglasses.png"];
         self.weatherDescription = @"Clear Sky!!";
     }
     if ([weatherTypeString  isEqualToString:(@"02d")]) {
-        self.weatherConditionImage.image = [UIImage imageNamed:@"02d_fewClouds.png"];
-        self.rainOrSunImage.image = [UIImage imageNamed:@"sunglasses.png"];
+        self.weatherConditionImage.image = [UIImage imageNamed:@"02d_fewCloudsDay.png"];
         self.weatherDescription = @"A Few Clouds!!";
     }
     if ([weatherTypeString  isEqualToString:(@"03d")]) {
-        self.weatherConditionImage.image = [UIImage imageNamed:@"03d_scatteredClouds.png"];
+        self.weatherConditionImage.image = [UIImage imageNamed:@"03d_scatteredCloudsDay.png"];
         self.weatherDescription = @"Scattered Clouds!!";
     }
     if ([weatherTypeString  isEqualToString:(@"04d")]) {
-        self.weatherConditionImage.image = [UIImage imageNamed:@"04d_brokenClouds.png"];
+        self.weatherConditionImage.image = [UIImage imageNamed:@"03d_scatteredCloudsDay.png"];
         self.weatherDescription = @"Cloudy!!";
     }
     if ([weatherTypeString  isEqualToString:(@"09d")]) {
-        self.weatherConditionImage.image = [UIImage imageNamed:@"09-10d_showerRain-Rain.png"];
-        self.rainOrSunImage.image = [UIImage imageNamed:@"umbrella.png"];
+        self.weatherConditionImage.image = [UIImage imageNamed:@"09d_showerRainDay.png"];
         self.weatherDescription = @"Light Rain!!";
     }
     if ([weatherTypeString  isEqualToString:(@"10d")]) {
-        self.weatherConditionImage.image = [UIImage imageNamed:@"09-10d_showerRain-Rain.png"];
-        self.rainOrSunImage.image = [UIImage imageNamed:@"umbrella.png"];
+        self.weatherConditionImage.image = [UIImage imageNamed:@"09d_showerRainDay.png"];
         self.weatherDescription = @"Rain!!";
     }
     if ([weatherTypeString  isEqualToString:(@"11d")]) {
-        self.weatherConditionImage.image = [UIImage imageNamed:@"11d_thunderStorm.png"];
-        self.rainOrSunImage.image = [UIImage imageNamed:@"umbrella.png"];
+        self.weatherConditionImage.image = [UIImage imageNamed:@"11d_thunderstormDay.png"];
         self.weatherDescription = @"Thunderstorm!!";
     }
     if ([weatherTypeString  isEqualToString:(@"13d")]) {
-        self.weatherConditionImage.image = [UIImage imageNamed:@"13d_snow.png"];
-        self.rainOrSunImage.image = [UIImage imageNamed:@"umbrella.png"];
+        self.weatherConditionImage.image = [UIImage imageNamed:@"13d_snowDay.png"];
         self.weatherDescription = @"Snowing!!";
     }
     if ([weatherTypeString  isEqualToString:(@"50d")]) {
         self.weatherConditionImage.image = [UIImage imageNamed:@"50d_mist.png"];
         self.weatherDescription = @"Very Misty!!";
     }
-    
     if ([weatherTypeString  isEqualToString:(@"01n")]) {
         // self.weatherLabel.text = [NSString stringWithFormat:@"raining"];
-        self.weatherConditionImage.image = [UIImage imageNamed:@"01d_clearSkyNight.png"];
+        self.weatherConditionImage.image = [UIImage imageNamed:@"01n_clearSkyNight.png"];
         self.weatherDescription = @"Clear Sky!!";
     }
     if ([weatherTypeString  isEqualToString:(@"02n")]) {
-        self.weatherConditionImage.image = [UIImage imageNamed:@"02n_fewClouds.png"];
+        self.weatherConditionImage.image = [UIImage imageNamed:@"02n_fewCloudsNight.png"];
         self.weatherDescription = @"A Few Clouds!!";
     }
     if ([weatherTypeString  isEqualToString:(@"03n")]) {
-        self.weatherConditionImage.image = [UIImage imageNamed:@"03n_scatteredClouds.png"];
+        self.weatherConditionImage.image = [UIImage imageNamed:@"03n_scatteredCloudsNight.png"];
         self.weatherDescription = @"Scattered Clouds!!";
     }
     if ([weatherTypeString  isEqualToString:(@"04n")]) {
-        self.weatherConditionImage.image = [UIImage imageNamed:@"04n_brokenClouds.png"];
+        self.weatherConditionImage.image = [UIImage imageNamed:@"03n_scatteredCloudsNight.png"];
         self.weatherDescription = @"Cloudy!!";
     }
     if ([weatherTypeString  isEqualToString:(@"09n")]) {
-        self.weatherConditionImage.image = [UIImage imageNamed:@"09-10n_showerRain-Rain.png"];
+        self.weatherConditionImage.image = [UIImage imageNamed:@"09n_showerRainNight.png"];
         self.weatherDescription = @"Light Rain!!";
     }
     if ([weatherTypeString  isEqualToString:(@"10n")]) {
-        self.weatherConditionImage.image = [UIImage imageNamed:@"09-10n_showerRain-Rain.png"];
+        self.weatherConditionImage.image = [UIImage imageNamed:@"09n_showerRainNight.png"];
         self.weatherDescription = @"Rain!!";
     }
     if ([weatherTypeString  isEqualToString:(@"11n")]) {
-        self.weatherConditionImage.image = [UIImage imageNamed:@"11n_thunderStorm.png"];
+        self.weatherConditionImage.image = [UIImage imageNamed:@"11n_thunderstormNight.png"];
         self.weatherDescription = @"Thunderstorm!!";
     }
     if ([weatherTypeString  isEqualToString:(@"13n")]) {
-        self.weatherConditionImage.image = [UIImage imageNamed:@"13n_snow.png"];
+        self.weatherConditionImage.image = [UIImage imageNamed:@"13n_snowNight.png"];
         self.weatherDescription = @"Snowing!!";
     }
     if ([weatherTypeString  isEqualToString:(@"50n")]) {
-        self.weatherConditionImage.image = [UIImage imageNamed:@"50n_mist.png"];
+        self.weatherConditionImage.image = [UIImage imageNamed:@"50d_mist.png"];
         self.weatherDescription = @"Very Misty!!";
     }
 
+    self.weatherLabel.text = self.weatherDescription;
     
-    if (weatherValue > 22) {
-        self.weatherLabel.text = [NSString stringWithFormat:@"It's damn hot and %@",self.weatherDescription];
-    }
-    else if (weatherValue > 13)
-    {
-        self.weatherLabel.text = [NSString stringWithFormat:@"It's faily mild and %@",self.weatherDescription];
-    }
-    else
-    {
-        self.weatherLabel.text = [NSString stringWithFormat:@"It's Bloody Cold and %@",self.weatherDescription];
-    }
-    
+//    if (weatherValue > 22) {
+//        self.weatherLabel.text = [NSString stringWithFormat:@"It's damn hot and %@",self.weatherDescription];
+//    }
+//    else if (weatherValue > 13)
+//    {
+//        self.weatherLabel.text = [NSString stringWithFormat:@"It's faily mild and %@",self.weatherDescription];
+//    }
+//    else
+//    {
+//        self.weatherLabel.text = [NSString stringWithFormat:@"It's Bloody Cold and %@",self.weatherDescription];
+//    }
     
 }
 
@@ -252,39 +246,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-//- (IBAction)saveWeatherLocation:(id)sender {
-//    
-//    if (!self.locationSet) {
-//       // [self.saveButton setTitle:@"save" forState:UIControlStateNormal];
-//        UIImage *buttonImage = [UIImage imageNamed:@"tickButton.png"];
-//        [self.saveButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-//        self.weatherCityString = self.weatherLocationTextField.text;
-//        self.locationLabel.text = [NSString stringWithFormat:@"%@",self.weatherCityString];
-//        [self.weatherLocationTextField setHidden:NO];
-//        [self.weatherLocationTextField becomeFirstResponder];
-//        [self.locationLabel setHidden:YES];
-//        self.locationSet = YES;
-//            }
-//    
-//    else if (self.locationSet){
-//       // [self.saveButton setTitle:@"change location" forState:UIControlStateNormal];
-//        UIImage *buttonImage = [UIImage imageNamed:@"refreshButton.png"];
-//        [self.saveButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-//        [self.weatherLocationTextField setHidden:YES];
-//        self.weatherCityString = self.weatherLocationTextField.text;
-//        self.locationLabel.text = [NSString stringWithFormat:@"%@",self.weatherCityString];
-//        [self.locationLabel setHidden:NO];
-//        [self.weatherLocationTextField resignFirstResponder];
-//        [self getWeatherForCity:[NSString stringWithFormat:@"%@",self.weatherCityString]];
-//        [[NSUserDefaults standardUserDefaults] setObject:self.weatherCityString forKey:@"cityLocation"];
-//
-//        
-//        self.locationSet = NO;
-//    }
-//
-//  
-//}
-
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
 }
@@ -293,7 +254,14 @@
     
     UILocalNotification *notification = [[UILocalNotification alloc]init];
     notification.fireDate = fireDate;
-    notification.alertBody = [NSString stringWithFormat:@"Get up"];
+    
+    if ([self.dailyReminderString length] == 0) {
+        notification.alertBody = [NSString stringWithFormat:@"Alarm"];
+    }
+    else{
+        notification.alertBody = [NSString stringWithFormat:@"%@",self.dailyReminderString];
+    }
+    
     notification.alertAction = @"Check Weather";
     notification.soundName = @"newAlarm.mp3";
     
@@ -320,28 +288,26 @@
     
     if (!self.dailyReminderSet) {
         self.dailyReminderSet = YES;
-     //   [self.saveDailyReminderButton setTitle:@"Save" forState:UIControlStateNormal];
-        UIImage *buttonImage = [UIImage imageNamed:@"tickButton.png"];
-        [self.saveDailyReminderButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+        [self.saveDailyReminderButton setTitle:@"Save" forState:UIControlStateNormal];
         [self.dailyReminderLabel setHidden:YES];
-        [self.speechBubbleImageView setAlpha:0.3];
         [self.dailyReminderTextField setHidden:NO];
         [self.dailyReminderTextField becomeFirstResponder];
+//        UIImage *buttonImage = [UIImage imageNamed:@"tickButton.png"];
+//        [self.saveDailyReminderButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     }
     
     else if (self.dailyReminderSet){
         
         self.dailyReminderSet = NO;
-     //   [self.saveDailyReminderButton setTitle:@"Change reminder" forState:UIControlStateNormal];
-        UIImage *buttonImage = [UIImage imageNamed:@"refreshButton.png"];
-        [self.saveDailyReminderButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+        [self.saveDailyReminderButton setTitle:@"Change" forState:UIControlStateNormal];
         [self.dailyReminderTextField setHidden:YES];
         self.dailyReminderString = self.dailyReminderTextField.text;
         self.dailyReminderLabel.text = [NSString stringWithFormat:@"%@",self.dailyReminderString];
         [[NSUserDefaults standardUserDefaults]setObject:self.dailyReminderString forKey:@"dailyReminder"];
-        [self.speechBubbleImageView setAlpha:1.0];
         [self.dailyReminderLabel setHidden:NO];
         [self.dailyReminderTextField resignFirstResponder];
+//        UIImage *buttonImage = [UIImage imageNamed:@"refreshButton.png"];
+//        [self.saveDailyReminderButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     }
 }
 
@@ -387,8 +353,22 @@
     
     [UIView animateWithDuration:0.3 animations:^{
         CGRect f = self.view.frame;
-        f.origin.y = -85.0f;
+        f.origin.y = -105.0f;
         self.view.frame = f;
+        
+        self.view.backgroundColor = [UIColor blackColor];
+        [self.weatherLabel setAlpha:0.1];
+        [self.locationLabel setAlpha:0.1];
+        [self.dateTimePicker setAlpha:0.1];
+        [self.setAlarmButton setAlpha:0.1];
+        [self.lowTempLabel setAlpha:0.1];
+        [self.highTempLabel setAlpha:0.1];
+        [self.currentTempLabel setAlpha:0.1];
+        [self.dailyReminderLabel setAlpha:0.1];
+        [self.weatherConditionImage setAlpha:0.1];
+        [self.clockTimeLabel setAlpha:0.1];
+        [self.transparentOverlay setAlpha:0.1];
+        [self.saveDailyReminderButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }];
 }
 
@@ -397,16 +377,21 @@
         CGRect f = self.view.frame;
         f.origin.y = 0.0f;
         self.view.frame = f;
+        
+        [self.weatherLabel setAlpha:1.0];
+        [self.locationLabel setAlpha:1.0];
+        [self.dateTimePicker setAlpha:1.0];
+        [self.setAlarmButton setAlpha:1.0];
+        [self.lowTempLabel setAlpha:1.0];
+        [self.highTempLabel setAlpha:1.0];
+        [self.currentTempLabel setAlpha:1.0];
+        [self.dailyReminderLabel setAlpha:1.0];
+        [self.weatherConditionImage setAlpha:1.0];
+        [self.clockTimeLabel setAlpha:1.0];
+        [self.transparentOverlay setAlpha:1.0];
+        [self.saveDailyReminderButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        
     }];
 }
-
-//-(void)saveLocation{
-//}
-
--(void)setWeatherImages{
-    
-    
-}
-
 
 @end
